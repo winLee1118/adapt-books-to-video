@@ -122,7 +122,7 @@ python install.py --dest /path/to/agent/skills
 
 ## 导演风格参数与工作流
 
-导演风格是贯穿导演设计、资产、分镜、提示词和 QA 的可配置工作流。完整规范见 [导演与经典电影方法覆盖层](adapt-books-to-video/references/director-style-overlays.md)。可以提供导演、影片、流派作为分析参考，也可以直接给出摄影与叙事参数。
+导演风格是贯穿导演设计、资产、分镜、提示词和 QA 的可配置工作流。完整规范见 [导演与经典电影方法覆盖层](https://github.com/winLee1118/adapt-books-to-video/blob/main/adapt-books-to-video/references/director-style-overlays.md)。可以提供导演、影片、流派作为分析参考，也可以直接给出摄影与叙事参数。
 
 ### 输入参数
 
@@ -364,7 +364,7 @@ python adapt-books-to-video/scripts/validate_release.py "work/作品名称-video
 | 剧本与开场 | [剧本工作流](adapt-books-to-video/references/screenplay-workflow.md)、[戏剧与短剧](adapt-books-to-video/references/dramatic-engine-and-short-drama.md)、[开场承诺](adapt-books-to-video/references/opening-promise-design.md)、[编剧导演覆盖层](adapt-books-to-video/references/screenwriting-directing-overlay.md) |
 | 导演与表演 | [导演设计](adapt-books-to-video/references/directing-and-dramaturgy.md)、[镜头桥接](adapt-books-to-video/references/cinematic-shot-bridging.md)、[演员表演](adapt-books-to-video/references/actor-performance-workflow.md)、[表演与微表情](adapt-books-to-video/references/performance-and-microexpressions.md) |
 | 资产与空间 | [资产策略](adapt-books-to-video/references/reference-asset-strategy.md)、[资产台账](adapt-books-to-video/references/reference-asset-ledger.md)、[空间锁](adapt-books-to-video/references/scene-spatial-lock.md)、[场景生产设计](adapt-books-to-video/references/cinematic-scene-production-design.md) |
-| 真实感与风格 | [真实感蒸馏](adapt-books-to-video/references/realism-distillation.md)、[角色真实感](adapt-books-to-video/references/character-realism-distillation.md)、[默认写实基线](adapt-books-to-video/references/default-grounded-drama-baseline.md)、[导演风格方法](adapt-books-to-video/references/director-style-overlays.md)、[构图预演](adapt-books-to-video/references/cinema-composition-overlay.md)、[神话电影](adapt-books-to-video/references/production-type-and-mythic-film.md) |
+| 真实感与风格 | [真实感蒸馏](adapt-books-to-video/references/realism-distillation.md)、[角色真实感](adapt-books-to-video/references/character-realism-distillation.md)、[默认写实基线](adapt-books-to-video/references/default-grounded-drama-baseline.md)、[导演风格方法](https://github.com/winLee1118/adapt-books-to-video/blob/main/adapt-books-to-video/references/director-style-overlays.md)、[构图预演](adapt-books-to-video/references/cinema-composition-overlay.md)、[神话电影](adapt-books-to-video/references/production-type-and-mythic-film.md) |
 | 模型提示词 | [提示词规范](adapt-books-to-video/references/prompt-spec.md)、[模型适配](adapt-books-to-video/references/model-adapters.md)、[Seedance 编译](adapt-books-to-video/references/seedance-2x-workflow.md)、[结构故事板参考](adapt-books-to-video/references/structural-storyboard-reference.md) |
 | 配乐与验收 | [背景音乐](adapt-books-to-video/references/background-music-workflow.md)、[实片 QA](adapt-books-to-video/references/video-result-qa.md)、[连续性与修复](adapt-books-to-video/references/continuity-and-failure-repair.md) |
 | 方法来源 | [来源与署名](adapt-books-to-video/references/source-provenance.md) |
