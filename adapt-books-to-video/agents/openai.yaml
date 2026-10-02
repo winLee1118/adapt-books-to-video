@@ -1,0 +1,4 @@
+interface:
+  display_name: "书籍改编与 AI 视频工作流"
+  short_description: "从作品文本到剧本、证据、导演设计、分镜、模型提示词与成片验收"
+  default_prompt: "使用 $adapt-books-to-video 将我提供的作品改编成可拍摄的中文视频方案，先锁需求与文本证据，再开发剧本、导演设计、资产与分镜，交付可复制的模型提示词和验收清单。"

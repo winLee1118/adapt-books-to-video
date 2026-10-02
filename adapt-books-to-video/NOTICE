@@ -1,0 +1,22 @@
+Adapt Books to Video
+Maintainer: winLee1118
+
+This distribution contains a generalized agent workflow and Python helpers.
+It excludes production examples, user reference videos, generated media,
+private production manifests, and local account or machine configuration.
+
+Attribution: Serge Shima, smixs/visual-skills
+https://github.com/smixs/visual-skills
+Related high-level visual methods include scene-first description, motivated
+camera movement, narrative shot function, and spatial readability. These were
+reorganized into this workflow. The attributed material is provided under
+CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+
+Further methodological sources and boundaries are recorded in:
+references/source-provenance.md
+Their license observations describe historical research, not a representation
+that external repositories' current contents have been audited or relicensed.
+
+The public edition removes work-specific narrative examples and reference-video
+records, adds host-independent execution guidance and installation support,
+and preserves the general production protocols and relevant attribution.

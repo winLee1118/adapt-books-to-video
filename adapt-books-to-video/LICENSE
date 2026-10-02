@@ -1,0 +1,20 @@
+License scope
+=============
+
+Copyright (c) 2026 winLee1118 and the attributed contributors.
+
+Workflow documentation (*.md) and agent metadata (*.yaml) are licensed under
+the Creative Commons Attribution 4.0 International license (CC BY 4.0).
+You may share and adapt these materials, including commercially, under its
+attribution terms. Preserve the applicable credits and indicate changes.
+The complete terms are available at:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Python source code (*.py) is licensed under the MIT License. See LICENSES/MIT.txt.
+Repository configuration is also provided under the MIT License.
+
+See NOTICE and references/source-provenance.md for
+attribution and third-party boundaries. These licenses do not grant rights
+to external books, translations, images, films, music, likenesses, or other
+materials used by a production project. External repository content is not
+included or relicensed by this distribution.
