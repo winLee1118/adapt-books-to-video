@@ -9,6 +9,7 @@
 - [适用场景与能力](#适用场景与能力)
 - [快速安装](#快速安装)
 - [调用方式](#调用方式)
+- [导演风格参数与工作流](#导演风格参数与工作流)
 - [六阶段制作流程](#六阶段制作流程)
 - [交付结构与版本管理](#交付结构与版本管理)
 - [辅助脚本](#辅助脚本)
@@ -118,6 +119,79 @@ python install.py --dest /path/to/agent/skills
 ```
 
 输入最好包含作品文本或可核验来源、版本/译本、改编范围、受众、总片长、风格、声画要求、目标模型和交付目录。只有作品名时，智能体应先定位可访问的文本与版本，并说明未获取的内容；不能声称已经通读未取得的原文。
+
+## 导演风格参数与工作流
+
+导演风格是贯穿导演设计、资产、分镜、提示词和 QA 的可配置工作流。完整规范见 [导演与经典电影方法覆盖层](adapt-books-to-video/references/director-style-overlays.md)。可以提供导演、影片、流派作为分析参考，也可以直接给出摄影与叙事参数。
+
+### 输入参数
+
+| CLI 参数 | 默认值 / 可选值 | 工作流用途 |
+| --- | --- | --- |
+| `--style-reference` | 默认 `none`；接受导演、影片、流派名称或方法描述 | 写入 `project-config.json` 的 `director_or_classic_film_reference`，作为风格分析输入 |
+| `--style-mode` | 默认 `observable-traits`；另可选 `named-reference-analysis-only` | 写入 `style_compilation_mode`，确定参考名称在分析与生成提示词之间的处理方式 |
+| `--genre` | 默认 `auto`；接受用户给定的类型标签 | 写入 `genre`，辅助类型与节奏设计；不得压过已选主风格 |
+
+`observable-traits`：把用户给定的方法描述或参考转成可观察的风格参数，作为实际制作约束。`named-reference-analysis-only`：在分析档案保留导演/影片名称，明确名称仅用于分析，再将方法拆成去专名参数。两种模式的模型提交版都应自包含，不能只靠导演名或电影名控制输出。
+
+初始化脚本只登记上述输入，不会自动研究导演、生成风格合同或修改素材；后续由智能体读取配置并执行覆盖层工作流。已有项目可直接在任务中提出新参数，由智能体记录变更和影响范围，无须重新初始化项目。
+
+在仓库根目录指定风格并预览配置：
+
+```bash
+python adapt-books-to-video/scripts/init_project.py --book "作品名称" --output ./work --production-track NARRATIVE --production-form AI_SHORT_DRAMA --format-route SHORT_FILM --style-reference "低机位静态观察、门框纵深、日常环境声、克制省略" --style-mode observable-traits --genre "家庭剧情" --dry-run
+```
+
+去掉 `--dry-run` 才创建项目。需要以导演或影片为分析索引时，将 `--style-reference` 替换为所选名称，并设置 `--style-mode named-reference-analysis-only`。
+
+也可以直接向智能体提供参数：
+
+```text
+使用 $adapt-books-to-video。
+导演风格参考：小津式低机位观察，仅研究高层方法。
+风格模式：named-reference-analysis-only。
+主摄影方法：接近坐姿视线的静态低机位、门框纵深与日常物件空镜。
+声音：环境声为主；表演：通过可见行动和省略表现关系。
+先在 04-style-bible.md 建立完整 STYLE-PROFILE 参数合同，
+再用于 20-director-design.md、分镜和模型提示词；本轮只做文本方案。
+```
+
+### 风格合同字段
+
+以下字段记录在 `04-style-bible.md`，是智能体需要展开的制作合同，**不是额外的 CLI 选项或模型 API 字段**。
+
+| 字段 | 要记录的参数 |
+| --- | --- |
+| `style_profile_id` | 稳定风格 ID，例如 `STYLE-PROFILE-01` |
+| `analysis_reference` | 分析参考及边界；名称不代替制作参数 |
+| `narrative_bias` | 叙事倾向、观众信息量与揭示策略 |
+| `lens_set_mm` | 焦段范围；落实到镜头的景别、机位和空间关系 |
+| `shot_size_bias` | 远景、中景、近景等景别偏好 |
+| `composition` | 前中后景、框中框、对称、人物比例和第一落点 |
+| `camera_moves_allowed` / `camera_moves_avoid` | 运镜选择、可见触发、路径、停止条件与避免项 |
+| `motion_budget` | 人物动作与摄影机运动的负荷分配 |
+| `lighting` | 光源、方向、硬软、光比 |
+| `palette` | 主色、辅色、强调色及适用边界 |
+| `texture` | 颗粒、高光、黑位、材质响应 |
+| `editing_rhythm` | 镜头长度倾向、停顿、切点与转场；不强制单任务固定时长 |
+| `sound_policy` | 环境、拟音、音乐、静默；不自动授权音乐生成 |
+| `performance_register` | 表演强度、身体规则与接收/回应方式 |
+| `aspect_rewrite_16_9` | 将所选方法落实为 16:9 横幅构图 |
+| `negative_additions` | 风格专属排除项与易混淆特征 |
+
+### 方法索引与执行顺序
+
+内置参考页提供以下方法索引，供选择与拆解，不是强制风格菜单：
+
+- 导演方法：希区柯克、库布里克、黑泽明、小津、伯格曼、费里尼、塔可夫斯基、塞尔乔·莱昂内、王家卫、张艺谋、斯皮尔伯格、芬奇、维伦纽瓦、侯孝贤。
+- 电影流派：黑色电影、德国表现主义、意大利新现实主义、法国新浪潮。
+- 自定义方法：直接指定可观察的摄影、色彩、声音、剪辑与表演参数，由智能体建立原创组合。
+
+执行链为：**读取配置/当前要求 → 选定主风格 → 方法分析 → STYLE-PROFILE 合同 → 导演设计 → 分镜与资产 → 去专名提交提示词 → 实片风格 QA**。
+
+每个项目启用一个主覆盖层；多个参考不平均混合，最多从第二个参考借一个明确维度。未指定风格时使用 `DEFAULT-GROUNDED-DRAMA`。冲突顺序为：`历史/文本/证据硬约束 > 用户明确要求 > 主风格 > 类型片默认 > 默认写实基线 > 通用摄影默认`。
+
+风格交付包括参考边界、完整参数合同、去专名中文提示词块、横幅构图、冲突处理、同一控制场景的无覆盖/覆盖差异与风格排除项。参数须贯通 `04-style-bible.md`、`20-director-design.md`、镜头表、锚点、提示词和 QA；风格变化影响的资产或任务需升版登记，已提交任务的旧文件保持可追溯。
 
 ## 六阶段制作流程
 
@@ -243,6 +317,8 @@ python adapt-books-to-video/scripts/init_project.py --book "作品名称" --outp
 | `--production-type` | 未选、纪录、故事片或真人中式神话故事片 |
 | `--target-model` | 记录目标模型，不自动验证模型能力 |
 | `--style-reference` | 记录方法/电影/导演参考，仅用于分析 |
+| `--style-mode` | `observable-traits`（默认）或 `named-reference-analysis-only`，见导演风格工作流 |
+| `--genre` | 类型与节奏标签，默认 `auto`，服从主风格与文本约束 |
 | `--episodes` | 可选，分集数量 |
 | `--dry-run` | 输出计划与配置，不创建项目 |
 

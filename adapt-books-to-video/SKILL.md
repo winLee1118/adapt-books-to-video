@@ -36,6 +36,7 @@ description: Turn book text or a work title into an evidence-aware Chinese film 
 
 读 [production-execution.md](references/production-execution.md)、[output-spec.md](references/output-spec.md)。
 锁版本/译本、改编范围、受众、总片长、制作轨道、风格、声画要求、模型入口与交付范围。
+从用户当前要求与 `project-config.json` 解析导演风格输入：`director_or_classic_film_reference`（CLI `--style-reference`）、`style_compilation_mode`（`--style-mode`）与 `genre`（`--genre`）。已有项目优先沿用生效风格；当前明确变更则记录影响范围，不重新初始化或静默混用旧风格。具体字段与模式见 [director-style-overlays.md](references/director-style-overlays.md)。
 明确选择故事片或纪录片时直接沿用；只有确实未定时才简要给双轨提案，不重复询问已接受的选择。
 `production_track` 区分叙事/纪录；`production_form` 区分媒介；`format_route` 区分总篇幅。
 真人中式神话故事片另外读取 [production-type-and-mythic-film.md](references/production-type-and-mythic-film.md)，保留 `production_type`、`MYTHIC-WORLD-CARD` 与已选图像传统。
@@ -57,6 +58,7 @@ description: Turn book text or a work title into an evidence-aware Chinese film 
 
 读 [directing-and-dramaturgy.md](references/directing-and-dramaturgy.md)、[cinematic-shot-bridging.md](references/cinematic-shot-bridging.md)、[clip-sequencing.md](references/clip-sequencing.md)。
 在大量精制资产之前，锁导演设计并完成整段粗镜头表、声音结构和预剪时码。
+已指定导演、电影、流派或自定义方法时，先读 [director-style-overlays.md](references/director-style-overlays.md)，在 `04-style-bible.md` 建立一个主 `STYLE-PROFILE` 完整参数合同，再落实到 `20-director-design.md`、镜头表、资产与提交提示词。没有风格输入时读取默认写实基线；风格合同在实片 QA 中复核，不能只记录参考名称。
 允许先规划所有镜头，采用已有图片、草图或明确标为临时的占位做动态分镜；无渲染工具则提供时码表并标 `TIMING_REVIEW_ONLY`。
 检查观众能否理解行动因果、钩子兑现、信息重复、停顿和镜头间承接。以整段有效为准，之后再精制当前生成任务。
 根据模型已验证能力选择 `SINGLE_SHOT` 或 `NATIVE_MULTISHOT`；依赖前片实拍终态的任务才等待前片验收。
