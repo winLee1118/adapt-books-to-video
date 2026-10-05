@@ -389,3 +389,9 @@ Generate a large cast in tiers. Principal characters receive the full set; suppo
 `25-video-result-qa.md` follows video-result-qa.md and records real video metadata, full-view coverage, observed actions/cuts, defects, usable ranges, actual end state and bridge preview results. The overall quality report identifies the active release and pending post work.
 
 Run `python scripts/validate_release.py <project>/active-release.json` before submitting active jobs. It reads only and reports structural errors; it cannot approve images, movie quality, official capability claims or inferred events. An empty new project is a scaffold, not submission-ready.
+
+## 7. Optional per-video dashboard
+
+Only when the user explicitly requests dashboard generation or refresh, read [dashboard-workflow.md](dashboard-workflow.md). Do not create dashboard files during ordinary initialization, production, QA or delivery.
+
+On request, create `dashboard-map.json` with explicit scene/episode/video numbering and file/excerpt ownership, then generate `reports/boards/index.html`, one HTML page per video unit, and `dashboard-generated.json`. Display script breakdown, script detail, director notes/blocking, assets, storyboards, prompts, sound/edit records, QA and other files. Shared documents and the complete workflow file inventory remain accessible and visibly distinct from per-video content. Missing or unmapped material is labeled; a dashboard cannot approve it. The optional pages do not alter official image counts or become model inputs. Output is a local snapshot, not an automatically hosted website.

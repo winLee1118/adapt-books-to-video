@@ -31,6 +31,7 @@ description: Turn book text or a work title into an evidence-aware Chinese film 
 - 模型能力按准确版本和实际 UI/API 核验，不从其他平台迁移控制项。未验证写 `NOT DOCUMENTED`，不可把提示词意图声称为执行保证。
 - 生成、上传、导出只在用户已授权范围内执行；无可用生成工具时交付明确的提示词包，不宣称成片通过。
 - 背景音乐是按需工作流，不是默认生产步骤。只有用户明确要求“生成/制作/提交 BGM（配乐）”时才可调用音乐生成入口；其余情形仅完成分析、推荐和待发送提示词，状态为 `PROMPT_ONLY`。
+- 制作看板默认不生成。只有用户明确要求生成或更新看板时，才读 [dashboard-workflow.md](references/dashboard-workflow.md) 并运行对应脚本；不在初始化、制作或普通交付时自动创建看板文件。
 
 ## 阶段 1：需求与生效版本
 
@@ -94,6 +95,8 @@ Seedance/即梦目标必须读 [seedance-2x-workflow.md](references/seedance-2x-
 
 ## 工具与交付
 
+- **按需视频看板**：[dashboard-workflow.md](references/dashboard-workflow.md) 定义每条视频一页，主标题明确第几场／集、第几条视频；汇集本条剧本分条、细化、导演台本、资产、分镜、提示词与其他制作文件。项目共用和未归属文件单列，完整索引覆盖实际工作流文件。编号与归属来自生效记录的显式映射，不猜测；看板仅作状态快照，不改变批准或生成媒体。用户未要求时跳过整个流程。
+- [scripts/generate_dashboard.py](scripts/generate_dashboard.py)：仅带显式 `--generate` 时生成离线 HTML；按需建立 `dashboard-map.json`，已有看板仅在用户要求更新时 `--refresh`。不替代实片 QA，不自动公开发布。
 - [scripts/init_project.py](scripts/init_project.py)：创建新项目和待填写的版本清单，默认时长由节拍决定。
 - [scripts/validate_release.py](scripts/validate_release.py)：只读校验生效清单、引用文件/哈希、任务时码、依赖和状态，不替代视觉验收。
 - [output-spec.md](references/output-spec.md)：交付卡形态、现有文档及新增生效/预剪/视频 QA 合同。
